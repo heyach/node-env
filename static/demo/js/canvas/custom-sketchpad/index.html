@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>自定义画板</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/animation.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/delay.css">
+  </head>
+<body>
+	<div id="container">
+		<div class="tdloading hide">
+			<div class="cont ai delay1">
+				<div class="item i1">L</div>
+				<div class="item i2">L</div>
+				<div class="item i3">L</div>
+				<div class="item i4">L</div>
+				<div class="item i5">L</div>
+				<div class="item i6">L</div>
+			</div>
+			<div class="cont ai delay2">
+				<div class="item i1">O</div>
+				<div class="item i2">O</div>
+				<div class="item i3">O</div>
+				<div class="item i4">O</div>
+				<div class="item i5">O</div>
+				<div class="item i6">O</div>
+			</div>
+			<div class="cont ai delay3">
+				<div class="item i1">A</div>
+				<div class="item i2">A</div>
+				<div class="item i3">A</div>
+				<div class="item i4">A</div>
+				<div class="item i5">A</div>
+				<div class="item i6">A</div>
+			</div>
+			<div class="cont ai delay4">
+				<div class="item i1">D</div>
+				<div class="item i2">D</div>
+				<div class="item i3">D</div>
+				<div class="item i4">D</div>
+				<div class="item i5">D</div>
+				<div class="item i6">D</div>
+			</div>
+			<div class="cont ai delay5">
+				<div class="item i1">I</div>
+				<div class="item i2">I</div>
+				<div class="item i3">I</div>
+				<div class="item i4">I</div>
+				<div class="item i5">I</div>
+				<div class="item i6">I</div>
+			</div>
+			<div class="cont ai delay6">
+				<div class="item i1">N</div>
+				<div class="item i2">N</div>
+				<div class="item i3">N</div>
+				<div class="item i4">N</div>
+				<div class="item i5">N</div>
+				<div class="item i6">N</div>
+			</div>
+			<div class="cont ai delay7">
+				<div class="item i1">G</div>
+				<div class="item i2">G</div>
+				<div class="item i3">G</div>
+				<div class="item i4">G</div>
+				<div class="item i5">G</div>
+				<div class="item i6">G</div>
+			</div>
+		</div>
+		<div class="sketchpad">
+			<div class="draw_types">
+				<div class="draw_type cur" data-type="freeline">任意线</div>
+				<!--<div class="draw_type" data-type="rect">矩形</div>-->
+				<div class="draw_type" data-type="eraser">橡皮擦</div>
+				<div class="btn_clear">清除画板</div>
+				<div class="colors" data-color="#d3c294">
+					<div class="color_con">
+						<div class="color" data-color="#d3c294"></div>
+						<div class="color" data-color="#ff0000"></div>
+						<div class="color" data-color="#ffff00"></div>
+						<div class="color" data-color="#008000"></div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+			<canvas id="sketchpad"></canvas>
+		</div>
+	</div>
+	<div class="toast"></div>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/sketchpad.js"></script>
+	<script>
+		$(function(){
+			document.getElementById("container").addEventListener("touchmove", function(e){
+				e.preventDefault();
+			}, false);
+			var sketchpad = new Sketchpad("sketchpad");
+			var ua = parseUA();
+			if(!ua.Mobile){
+				var w = 800;
+				var h = 600;
+				sketchpad.init(w, h);
+				$("#sketchpad").css({
+					"left": "50%",
+					"top": "50%",
+					"margin-left": -w / 2 +"px",
+					"margin-top": -h / 2 + "px",
+				});
+			}else{
+				var w = window.innerWidth;
+				var h = window.innerHeight - 50;
+				$("#sketchpad").css({
+					"left": "50%",
+					"top": "50px",
+					"margin-left": -w / 2 +"px",
+					"border": 0
+				});
+				$(".draw_types").css({
+					"width": "100%",
+					"height": "50px",
+					"top": "0",
+					"left": "0",
+					"border": 0,
+					"margin": 0,
+				});
+				sketchpad.init(w,h);
+			}
+			$(".draw_type").on("click",function(){
+				var target = $(this);
+				sketchpad.drawType = target.data("type");
+				sketchpad.drawColor = $(".colors").data("color");
+				target.addClass("cur");
+				target.siblings(".draw_type").removeClass("cur");
+				sketchpad.removeAllListener();
+				if(sketchpad.drawType == "freeline"){
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.down, sketchpad.drawFreeLineD, false);
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.move, sketchpad.drawFreeLineM, false);
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.up, sketchpad.drawFreeLineU, false);
+					sketchpad.events.push({type: sketchpad.mouseEvent.down, handler: sketchpad.drawFreeLineD});
+					sketchpad.events.push({type: sketchpad.mouseEvent.move, handler: sketchpad.drawFreeLineM});
+					sketchpad.events.push({type: sketchpad.mouseEvent.up, handler: sketchpad.drawFreeLineU});
+				}else if(sketchpad.drawType == "rect"){
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.down, sketchpad.drawRectD, false);
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.move, sketchpad.drawRectM, false);
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.up, sketchpad.drawRectU, false);
+					sketchpad.events.push({type: sketchpad.mouseEvent.down, handler: sketchpad.drawRectD});
+					sketchpad.events.push({type: sketchpad.mouseEvent.move, handler: sketchpad.drawRectM});
+					sketchpad.events.push({type: sketchpad.mouseEvent.up, handler: sketchpad.drawRectU});
+				}else if(sketchpad.drawType == "eraser"){
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.down, sketchpad.eraserD, false);
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.move, sketchpad.eraserM, false);
+					sketchpad.canvas.addEventListener(sketchpad.mouseEvent.up, sketchpad.eraserU, false);
+					sketchpad.events.push({type: sketchpad.mouseEvent.down, handler: sketchpad.eraserD});
+					sketchpad.events.push({type: sketchpad.mouseEvent.move, handler: sketchpad.eraserM});
+					sketchpad.events.push({type: sketchpad.mouseEvent.up, handler: sketchpad.eraserU});
+				}
+			});
+			//默认添加任意线类
+			sketchpad.canvas.addEventListener(sketchpad.mouseEvent.down, sketchpad.drawFreeLineD, false);
+			sketchpad.canvas.addEventListener(sketchpad.mouseEvent.move, sketchpad.drawFreeLineM, false);
+			sketchpad.canvas.addEventListener(sketchpad.mouseEvent.up, sketchpad.drawFreeLineU, false);
+			sketchpad.events.push({type: sketchpad.mouseEvent.down, handler: sketchpad.drawFreeLineD});
+			sketchpad.events.push({type: sketchpad.mouseEvent.move, handler: sketchpad.drawFreeLineM});
+			sketchpad.events.push({type: sketchpad.mouseEvent.up, handler: sketchpad.drawFreeLineU});
+			sketchpad.canvas.addEventListener(sketchpad.mouseEvent.down, function(e){
+				if(sketchpad.drawType == ""){
+					Toast("请先选择绘制类型");
+				}
+			}, false);
+			$(".btn_clear").on("click",function(){
+				sketchpad.drawAgain();
+			});
+			$(".colors").on("click",function(){
+				$(".color_con").fadeToggle();
+			});
+			$(".colors .color").on("click",function(){
+				var target = $(this);
+				var color = target.data("color");
+				$(".colors").data("color", color).css("background", color);
+				sketchpad.drawColor = color;
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FilePreload</title>
+	<meta charset="utf-8">
+	<style>
+		body{margin: 0;padding: 0;}
+		.load{position: relative;width: 500px;height: 400px;border: 1px #ddd solid;margin: 30px;}
+		.load .progress,
+		.load .cur_file{position: relative;margin: 20px;height: 30px;line-height: 30px;}
+		.imgs{position: relative;margin: 20px;}
+		.imgs img{width: 50px;height: 50px;}
+	</style>
+</head>
+<body>
+<div class="load">
+	<div class="progress">加载中<span></span>%</div>
+	<div class="imgs"></div>
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="Preload.js"></script>
+<script>
+	var imgArr = [
+		'http://p2.qhimg.com/t01ed1438874f940dc0.jpg',
+		'http://p9.qhimg.com/t01b4ff03b72c7dc6c7.jpg',
+		'http://p2.qhimg.com/t01dd90dfbec92074d0.jpg',
+		'http://p7.qhimg.com/t01cfec6d87cde457c5.jpg',
+		'http://p9.qhimg.com/t01943ced462da67833.jpg',
+		'http://p0.qhimg.com/t01943ced462da67833.jpg',
+		'http://p6.qhimg.com/t01aa15a7ba7ccb49a7.jpg',
+		'http://p8.qhimg.com/t010f1e8badf1134376.jpg',
+		'http://p8.qhimg.com/t01cf37ea915533a032.jpg',
+		'http://p3.qhimg.com/t0193d8a3963e1803e9.jpg',
+		'http://p3.qhimg.com/t01cd6a4d4b4bd4457b.jpg'
+	];
+	var audioArr = ['http://win.web.rh03.sycdn.kuwo.cn/a94bc859af795b1151ea8288a83bd598/5be0f199/resource/a3/73/14/442107196.aac'];
+	var preLoad = new PreLoading(imgArr, audioArr, function(e){
+		//指定progress更新回调
+		var p = parseInt((preLoad.loadImgNum + preLoad.loadAudioNum) / (imgArr.length + audioArr.length) * 100);
+		$(".progress span").html(p);
+		if(p == 100){
+			console.log("load com");
+		}
+	});
+	preLoad.preLoadImg(); 
+	preLoad.preLoadAudio(); 
+</script>
+</html>

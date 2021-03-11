@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>timer</title>
+	<meta charset="utf-8">
+	<style>
+		body{margin: 0;padding: 0;}
+		.con{position: relative;width: 500px;height: 400px;margin: 30px;border: 1px #ddd solid;}
+		.con .ball{position: absolute;border-radius: 50%;}
+		.con1{position: relative;width: 500px;height: 400px;margin: 30px;border: 1px #ddd solid;}
+		.con1 .ball{position: absolute;border-radius: 50%;}
+	</style>
+</head>
+<body>
+<div class="con">
+<div class="tip">每个球由一个定时器控制，球数越多，定时器越多</div></div>
+<div class="con1">
+<div class="tip">所有的球共用一个定时器，使用自己的回调，总定时器和每个球的运动都可以单独控制</div></div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+var Timer = function(){
+	return{
+		init:function(fps){
+			var that = this;
+			that.bi = 0;
+			that.fps = fps;
+			that.status = true;
+			that.methods = [];
+			that.timer = setInterval(function(){
+				if(that.status){
+					that.bi++;
+					for(var i = 0;i < that.methods.length;i++){
+						if(that.methods[i].status){
+							that.methods[i].func();
+						}
+					}
+				}
+			},1000/fps);
+		},
+		initTimer:function(funcname,status,func){
+			var that = this;
+			that.methods.push({
+				funcname: funcname,
+				status: status,
+				func: func,
+			});
+		},
+		pauseFuncByName:function(name){
+			var that =this;
+			for(var i = 0;i < that.methods.length;i++){
+				if(that.methods[i].funcname == name){
+					that.methods[i].status = false;
+				}
+			}
+		},
+		startFuncByName:function(name){
+			var that =this;
+			for(var i = 0;i < that.methods.length;i++){
+				if(that.methods[i].funcname == name){
+					that.methods[i].status = true;
+				}
+			}
+		},
+		start:function(){
+			var that = this;
+			that.status = true;
+		},
+		pause:function(){
+			var that = this;
+			that.status = false;
+		},
+		destroy:function(){
+			var that = this;
+			clearInterval(that.timer);
+		}
+	}
+}();
+Timer.init(60);
+function Ball(options){
+	this.id = options.id;
+	this.x = options.x;
+	this.y = options.y;
+	this.w = options.w;
+	this.h = options.h;
+	this.ax = options.ax;
+	this.ay = options.ay;
+	this.fa = $(options.fa);
+	this.color = options.color;
+	this.fps = options.fps;
+	this.sx = 0;
+	this.sy = 0;
+	this.ex = this.fa.width();
+	this.ey = this.fa.height();
+}
+Ball.prototype.init = function(){
+	var that = this;
+	that.elm = $("<div class='ball'></div>");
+	that.elm.css({
+		left: that.x,
+		top: that.y,
+		width: that.w,
+		height: that.h,
+		background: that.color
+	});
+	that.fa.append(that.elm);
+	that.timer = setInterval(function(){
+		that.update();
+	},1000/that.fps);
+}
+Ball.prototype.init1 = function(){
+	var that = this;
+	that.elm = $("<div class='ball'></div>");
+	that.elm.css({
+		left: that.x,
+		top: that.y,
+		width: that.w,
+		height: that.h,
+		background: that.color
+	});
+	that.fa.append(that.elm);
+	Timer.initTimer("t" + that.id,true,function(){
+		that.update();
+		//that.checkCollision(); //碰撞检测 
+	});
+}
+Ball.prototype.update = function(){
+	var that = this;
+	that.x += that.ax;
+	that.y += that.ay;
+	if(that.x < that.sx){
+		that.x = that.sx;
+		that.ax = -that.ax;
+	}
+	if(that.y < that.sy){
+		that.y = that.sy;
+		that.ay = -that.ay;
+	}
+	if(that.x + that.w > that.ex){
+		that.x = that.ex - that.w;
+		that.ax = -that.ax;
+	}
+	if(that.y + that.h > that.ey){
+		that.y = that.ey - that.h;
+		that.ay = -that.ay;
+	}
+	this.elm.css({left:that.x,top:that.y});
+}
+var colors = ["red","green","yellow","pink","black","blue"];
+var balls = [],balls1 = [];
+var ix = 1;
+var nx = 1;
+for(var i = 0;i < 30;i++){
+	balls.push(new Ball({
+		id: ix++,
+		x: 10 + Math.random()*10,
+		y: 10 + Math.random()*20,
+		w: 10 + Math.random()*10,
+		h: 10 + Math.random()*20,
+		ax: Math.random()*10,
+		ay: Math.random()*10,
+		fps: 60,
+		fa: $(".con"),
+		color: colors[Math.ceil(Math.random()*5)],
+	}));
+	balls[i].init();
+}
+for(var j = 0;j < 30;j++){
+	balls1.push(new Ball({
+		id: nx++,
+		x: 10 + Math.random()*10,
+		y: 10 + Math.random()*20,
+		w: 10 + Math.random()*10,
+		h: 10 + Math.random()*20,
+		ax: Math.random()*10,
+		ay: Math.random()*10,
+		fps: 60,
+		fa: $(".con1"),
+		color: colors[Math.ceil(Math.random()*5)],
+	}));
+	balls1[j].init1();
+}
+//Timer.pause();
+//Timer.pauseFuncByName("t10");
+</script>
+</body>
+</html>

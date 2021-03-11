@@ -1,0 +1,131 @@
+/*loading*/
+/*sprite_loading*/
+.bilibili_loading{position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 9999;background: #ffffff;}
+.bilibili_loading .i_bilibili{position: relative;width: 80px;height: 80px;background: url(../img/sprite_bilibili.png) 0 0 no-repeat;
+	left: 50%;margin-left: -40px;top: 50%;margin-top: -80px;z-index: 10;}
+.bilibili_loading .loading_progress{position: relative;top: 50%;left: 50%;transform: translateX(-50%);float: left;}
+.act_bilibili_loading{animation: act_bilibili_loading 0.5s steps(1) infinite;}
+/*3dloading*/
+.tdloading{position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 9999;background: #333333;}
+.tdloading .cont{position: absolute;width: 60px;height: 60px;top: 40%;left: 50%;transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;-moz-transform-style: preserve-3d;}
+.tdloading .cont:nth-child(1){margin-left: -330px;}
+.tdloading .cont:nth-child(2){margin-left: -230px;}
+.tdloading .cont:nth-child(3){margin-left: -130px;}
+.tdloading .cont:nth-child(4){margin-left: -30px;}
+.tdloading .cont:nth-child(5){margin-left: 70px;}
+.tdloading .cont:nth-child(6){margin-left: 170px;}
+.tdloading .cont:nth-child(7){margin-left: 270px;}
+.tdloading .cont .item{position: absolute;width: 60px;height: 60px;top: 0;left: 0;background: white;color: #1da1e2;
+	text-align: center;line-height: 60px;font-weight: 500;font-size: 30px;}
+.tdloading .cont .i1{-webkit-transform: rotateX(0deg) rotateY(0deg) translateZ(30px);
+	-moz-transform: rotateX(0deg) rotateY(0deg) translateZ(30px);
+	-ms-transform: rotateX(0deg) rotateY(0deg) translateZ(30px);
+	transform: rotateX(0deg) rotateY(0deg) translateZ(30px);
+	opacity: 1;border: 1px #1da1e2 solid;}
+.tdloading .cont .i2{-webkit-transform: rotateX(0deg) rotateY(90deg) translateZ(30px);
+	-moz-transform: rotateX(0deg) rotateY(90deg) translateZ(30px);
+	-ms-transform: rotateX(0deg) rotateY(90deg) translateZ(30px);
+	transform: rotateX(0deg) rotateY(90deg) translateZ(30px);
+	opacity: 1;border: 1px #1da1e2 solid;}
+.tdloading .cont .i3{-webkit-transform: rotateX(0deg) rotateY(90deg) translateZ(-30px);
+	-moz-transform: rotateX(0deg) rotateY(90deg) translateZ(-30px);
+	-ms-transform: rotateX(0deg) rotateY(90deg) translateZ(-30px);
+	transform: rotateX(0deg) rotateY(90deg) translateZ(-30px);
+	opacity: 1;border: 1px #1da1e2 solid;}
+.tdloading .cont .i4{-webkit-transform: rotateX(0deg) rotateY(0deg) translateZ(-30px);
+	-moz-transform: rotateX(0deg) rotateY(0deg) translateZ(-30px);
+	-ms-transform: rotateX(0deg) rotateY(0deg) translateZ(-30px);
+	transform: rotateX(0deg) rotateY(0deg) translateZ(-30px);
+	opacity: 1;border: 1px #1da1e2 solid;}
+.tdloading .cont .i5{-webkit-transform: rotateX(90deg) rotateY(0deg) translateZ(30px);
+	-moz-transform: rotateX(90deg) rotateY(0deg) translateZ(30px);
+	-ms-transform: rotateX(90deg) rotateY(0deg) translateZ(30px);
+	transform: rotateX(90deg) rotateY(0deg) translateZ(30px);
+	opacity: 1;border: 1px #1da1e2 solid;}
+.tdloading .cont .i6{-webkit-transform: rotateX(90deg) rotateY(0deg) translateZ(-30px);
+	-moz-transform: rotateX(90deg) rotateY(0deg) translateZ(-30px);
+	-ms-transform: rotateX(90deg) rotateY(0deg) translateZ(-30px);
+	transform: rotateX(90deg) rotateY(0deg) translateZ(-30px);
+	opacity: 1;border: 1px #1da1e2 solid;}
+.ai{-webkit-animation: ai 3s linear infinite;-moz-animation: ai 3s linear infinite;-ms-animation: ai 3s linear infinite;
+	animation: ai 3s linear infinite;}
+
+/*fff_can*/
+.can{position: absolute;width: 100%;height: 100%;box-sizing: border-box;z-index: 10;cursor: url(../img/hand.cur),move;
+	border-top: 0px solid transparent;}
+.can_container{position: absolute;width: 1px;height: 10px;left: 50%;top: 50%;margin-top: -250px;
+	transform-style: preserve-3d;perspective: 1200px;}
+.can_container_phone{position: absolute;width: 1px;height: 10px;left: 50%;top: 50%;margin-top: -150px;
+	transform-style: preserve-3d;perspective: 1200px;}
+.can_position{position: absolute;width: 1px;height: 10px;transition: transform 0.2s;
+    transform-style: preserve-3d;transform: translate3d(0px, 0px, 0px) rotateX(0deg) scale(1);}
+.can_box{transform-style: preserve-3d;pointer-events:none;}
+.can_hat{position: absolute;width: 390px;height: 390px;background: url(../img/canhat.png) 0 0 no-repeat;
+	background-size: 100% 100%;	opacity: 1;border-radius: 50%;overflow: hidden;
+	transform: rotateX(-90deg) translateZ(-160px) translateX(-170px);}
+.can_bottom{position: absolute;width: 390px;height: 390px;background: url(../img/canhat.png) 0 0 no-repeat;
+	background-size: 100% 100%;	opacity: 1;border-radius: 50%;overflow: hidden;
+	transform: rotateX(-90deg) translateZ(324px) translateX(-172px);}
+.can_container .can_item{position: absolute;width: 50px;height: 485px;background: url(../img/canbody.jpg);opacity: 1;}
+.can_container .can_0{background-position: 0px 0px;transform: rotateY(0deg) translateZ(188px) translateY(35px);}
+.can_container .can_1{background-position: 1150px 0px;transform: rotateY(15deg) translateZ(188px) translateY(35px);}
+.can_container .can_2{background-position: 1100px 0px;transform: rotateY(30deg) translateZ(188px) translateY(35px);}
+.can_container .can_3{background-position: 1050px 0px;transform: rotateY(45deg) translateZ(188px) translateY(35px);}
+.can_container .can_4{background-position: 1000px 0px;transform: rotateY(60deg) translateZ(188px) translateY(35px);}
+.can_container .can_5{background-position: 950px 0px;transform: rotateY(75deg) translateZ(188px) translateY(35px);}
+.can_container .can_6{background-position: 900px 0px;transform: rotateY(90deg) translateZ(188px) translateY(35px);}
+.can_container .can_7{background-position: 850px 0px;transform: rotateY(105deg) translateZ(188px) translateY(35px);}
+.can_container .can_8{background-position: 800px 0px;transform: rotateY(120deg) translateZ(188px) translateY(35px);}
+.can_container .can_9{background-position: 750px 0px;transform: rotateY(135deg) translateZ(188px) translateY(35px);}
+.can_container .can_10{background-position: 700px 0px;transform: rotateY(150deg) translateZ(188px) translateY(35px);}
+.can_container .can_11{background-position: 650px 0px;transform: rotateY(165deg) translateZ(188px) translateY(35px);}
+.can_container .can_12{background-position: 600px 0px;transform: rotateY(180deg) translateZ(188px) translateY(35px);}
+.can_container .can_13{background-position: 550px 0px;transform: rotateY(195deg) translateZ(188px) translateY(35px);}
+.can_container .can_14{background-position: 500px 0px;transform: rotateY(210deg) translateZ(188px) translateY(35px);}
+.can_container .can_15{background-position: 450px 0px;transform: rotateY(225deg) translateZ(188px) translateY(35px);}
+.can_container .can_16{background-position: 400px 0px;transform: rotateY(240deg) translateZ(188px) translateY(35px);}
+.can_container .can_17{background-position: 350px 0px;transform: rotateY(255deg) translateZ(188px) translateY(35px);}
+.can_container .can_18{background-position: 300px 0px;transform: rotateY(270deg) translateZ(188px) translateY(35px);}
+.can_container .can_19{background-position: 250px 0px;transform: rotateY(285deg) translateZ(188px) translateY(35px);}
+.can_container .can_20{background-position: 200px 0px;transform: rotateY(300deg) translateZ(188px) translateY(35px);}
+.can_container .can_21{background-position: 150px 0px;transform: rotateY(315deg) translateZ(188px) translateY(35px);}
+.can_container .can_22{background-position: 100px 0px;transform: rotateY(330deg) translateZ(188px) translateY(35px);}
+.can_container .can_23{background-position: 50px 0px;transform: rotateY(345deg) translateZ(188px) translateY(35px);}
+
+.can_container_phone .can_hat{position: absolute;width: 195px;height: 195px;background: url(../img/canhat.png) 0 0 no-repeat;
+	background-size: 100% 100%;	opacity: 1;border-radius: 50%;overflow: hidden;
+	transform: rotateX(-90deg) translateZ(-60px) translateX(-72px);}
+.can_container_phone .can_bottom{position: absolute;width: 195px;height: 195px;background: url(../img/canhat.png) 0 0 no-repeat;
+	background-size: 100% 100%;	opacity: 1;border-radius: 50%;overflow: hidden;
+	transform: rotateX(-90deg) translateZ(180px) translateX(-73px);}
+.can_container_phone .can_item{position: absolute;width: 50px;height: 485px;background: url(../img/canbody.jpg);opacity: 1;}
+.can_container_phone .can_0{background-position: 0px 0px;transform: rotateY(0deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_1{background-position: 1150px 0px;transform: rotateY(15deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_2{background-position: 1100px 0px;transform: rotateY(30deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_3{background-position: 1050px 0px;transform: rotateY(45deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_4{background-position: 1000px 0px;transform: rotateY(60deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_5{background-position: 950px 0px;transform: rotateY(75deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_6{background-position: 900px 0px;transform: rotateY(90deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_7{background-position: 850px 0px;transform: rotateY(105deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_8{background-position: 800px 0px;transform: rotateY(120deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_9{background-position: 750px 0px;transform: rotateY(135deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_10{background-position: 700px 0px;transform: rotateY(150deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_11{background-position: 650px 0px;transform: rotateY(165deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_12{background-position: 600px 0px;transform: rotateY(180deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_13{background-position: 550px 0px;transform: rotateY(195deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_14{background-position: 500px 0px;transform: rotateY(210deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_15{background-position: 450px 0px;transform: rotateY(225deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_16{background-position: 400px 0px;transform: rotateY(240deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_17{background-position: 350px 0px;transform: rotateY(255deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_18{background-position: 300px 0px;transform: rotateY(270deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_19{background-position: 250px 0px;transform: rotateY(285deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_20{background-position: 200px 0px;transform: rotateY(300deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_21{background-position: 150px 0px;transform: rotateY(315deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_22{background-position: 100px 0px;transform: rotateY(330deg) translateZ(94px) translateY(-84px) scale(0.5);}
+.can_container_phone .can_23{background-position: 50px 0px;transform: rotateY(345deg) translateZ(94px) translateY(-84px) scale(0.5);}
+
+.inital_can{animation: inital_can 2s linear forwards;}
+@media screen and (min-width: 510px) {
+	._P{width: 320px !important;height: 568px !important;left: 50% !important;top: 50% !important;margin-left: -160px;margin-top: -284px;}
+}

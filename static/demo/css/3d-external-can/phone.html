@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3D外景</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/animation.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/delay.css">
+  </head>
+<body>
+	<div id="container" class="_P">
+		<div class="bilibili_loading">
+			<div class="i_bilibili act_bilibili_loading"></div>
+			<div class="loading_progress">正在加载中</div>
+		</div>
+		<div class="can">
+			<div class="can_container_phone" style="transform: rotateX(-20deg)">
+				<div class="can_box" style="transform: rotateY(0deg)">
+					<div class="can_hat"></div>
+					<div class="can_item can_0"></div>
+					<div class="can_item can_1"></div>
+					<div class="can_item can_2"></div>
+					<div class="can_item can_3"></div>
+					<div class="can_item can_4"></div>
+					<div class="can_item can_5"></div>
+					<div class="can_item can_6"></div>
+					<div class="can_item can_7"></div>
+					<div class="can_item can_8"></div>
+					<div class="can_item can_9"></div>
+					<div class="can_item can_10"></div>
+					<div class="can_item can_11"></div>
+					<div class="can_item can_12"></div>
+					<div class="can_item can_13"></div>
+					<div class="can_item can_14"></div>
+					<div class="can_item can_15"></div>
+					<div class="can_item can_16"></div>
+					<div class="can_item can_17"></div>
+					<div class="can_item can_18"></div>
+					<div class="can_item can_19"></div>
+					<div class="can_item can_20"></div>
+					<div class="can_item can_21"></div>
+					<div class="can_item can_22"></div>
+					<div class="can_item can_23"></div>
+					<div class="can_bottom"></div>
+				</div> 
+			</div>
+		</div>
+	</div>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="js/basic.js"></script>
+</body>
+<script>
+var loadAudioArr = [""];
+var loadImgArr = ["img/canbody.jpg",
+                  "img/canhat.png"];
+var preLoad = new PreLoading();
+document.onreadystatechange = function(){
+	if(!preLoad.isPreLoad){
+		preLoad.isPreLoad = true;
+		preLoad.preLoadAudio(loadAudioArr);  
+		preLoad.preLoadImg(loadImgArr); 
+	}
+	if(document.readyState == "complete"){ 
+		if(preLoad.loadAudioCom && preLoad.loadImgCom){
+			$(".bilibili_loading").fadeOut();
+			$(".can_box").addClass("inital_can");
+		}
+	}
+};
+function rotateCan(){
+	var mpos = {},
+		dmpos = {},
+		elmOffset = {},
+		mouseEvent = ("ontouchstart" in window) ? 
+			{down: 'touchstart',move: 'touchmove',up: 'touchend'} : 
+			{down: 'mousedown',move: 'mousemove',up: 'mouseup'},
+		mousedown = false,
+		can_container_angle,
+		can_box_angle;
+	document.querySelector(".can").addEventListener(mouseEvent.down,function(e){
+		if(e.touches == undefined){
+			mpos.tx = e.pageX;
+			mpos.ty = e.pageY;
+		}else{
+			mpos.tx = e.touches[0].pageX;
+			mpos.ty = e.touches[0].pageY;
+		}
+		can_container_angle = getAngleFromStyle(".can_container_phone").angle;
+		can_box_angle = getAngleFromStyle(".can_box").angle;
+		mousedown = true;
+	},false);
+	document.querySelector(".can").addEventListener(mouseEvent.move,function(e){
+		e.preventDefault();
+		if(e.touches == undefined && mousedown){
+			dmpos.dtx = e.pageX - mpos.tx;
+			dmpos.dty = e.pageY - mpos.ty;
+		}else{
+			dmpos.dtx = e.touches[0].pageX - mpos.tx;
+			dmpos.dty = e.touches[0].pageY - mpos.ty;
+		}
+		d_can_container_angle = can_container_angle - dmpos.dty/10;
+		d_can_box_angle = can_box_angle + dmpos.dtx/10;
+		$(".can_container_phone").css("transform","rotateX(" + d_can_container_angle + "deg)");
+		$(".can_box").css("transform","rotateY(" + d_can_box_angle + "deg)");
+	},false);
+	document.querySelector(".can").addEventListener(mouseEvent.up,function(e){
+		mpos = {};
+		elmOffset = {};
+		mousedown = false;
+	},false);
+}
+$(function(){
+	var ua = parseUA();
+	if(!ua.Mobile){
+		window.location.href="index.html";
+	}
+	setTimeout(function(){
+		$(".can_box").removeClass("inital_can");
+		rotateCan();
+	}, 2000);
+});
+</script>
+</html>

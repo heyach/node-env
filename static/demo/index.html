@@ -1,0 +1,283 @@
+<!Doctype html>
+<html>
+
+<head>
+  <title>Demos</title>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+  <meta http-equiv="description" content="This is my page">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .css {
+      border: 1px red solid;
+    }
+
+    .html {
+      border: 1px blue solid;
+    }
+
+    .js {
+      border: 1px green solid;
+    }
+
+    .canvas {
+      border: 1px violet solid;
+    }
+
+    .demo_container {
+      position: absolute;
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .demo_container .demo_item {
+      position: relative;
+      padding: 20px;
+      max-width: 300px;
+      border-radius: 4px;
+      float: left;
+      margin-bottom: 20px;
+      margin-right: 20px;
+    }
+
+    .demo_item .demo_name {
+      position: relative;
+      width: 100%;
+      line-height: 20px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .demo_item .demo_intro {
+      position: relative;
+      width: 100%;
+      line-height: 25px;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .demo_item .demo_type {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.1;
+      text-align: center;
+      color: red;
+      height: 100%;
+      line-height: 92px;
+      font-size: 50px;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header"></div>
+  <div class="demo_container">
+  </div>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="algorithm/searchInsert.js"></script>
+  <script src="algorithm/minDepth.js"></script>
+  <script src="algorithm/strStr.js"></script>
+  <script src="algorithm/multiply.js"></script>
+  <script src="algorithm/removeDuplicates.js"></script>
+  <script src="algorithm/mergeTwoLists.js"></script>
+  <script src="algorithm/addString.js"></script>
+  <script src="algorithm/romanToInt.js"></script>
+  <script src="algorithm/isSubsequence.js"></script>
+  <script src="algorithm/reverse-num.js"></script>
+  <script src="algorithm/min-array.js"></script>
+  <script src="algorithm/huiwenshu.js"></script>
+  <script src="algorithm/two-num-sum.js"></script>
+  <script>
+    function randomRange(min, max) {
+      return Math.floor(Math.random() * max) + min;
+    }
+    function Shuffle(arr) {
+      arr = ObjectType.isArray(arr) ? arr : [];
+      for (let i = 0, a = arr.length - 1; i < a; i++) {
+        let r = randomRange(0, a - i);
+        let tmp = arr[r];
+        arr[r] = arr[a - i];
+        arr[a - i] = tmp;
+      }
+      console.log(arr)
+      return arr;
+    }
+    var ObjectType = {
+      isObject: function (obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1) == "Object"
+      },
+      isString: function (obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1) == "String"
+      },
+      isArray: function (obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1) == "Array"
+      },
+      isNumber: function (obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1) == "Number"
+      },
+    }
+    var list = [{
+      demo_type: "html",
+      demo_name: "输入框根据特殊键分隔标签",
+      demo_intro: "输入的过程中，使用分号、顿号、逗号、回车特殊键来分隔输入的内容，并生成标签样式，可以删除",
+      demo_href: "html/auto-segment-tags/index.html"
+    }, {
+      demo_type: "html",
+      demo_name: "PC背景图定位布局",
+      demo_intro: "PC页面内容区固定宽度，但banner图是满屏宽度的，缩放窗口，图片高度会变化，处理成定高",
+      demo_href: "html/full-banner-layout/index.html"
+    }, {
+      demo_type: "html",
+      demo_name: "圆环进度条",
+      demo_intro: "弧度百分比进度条，自定义颜色和宽度",
+      demo_href: "html/ring-progress/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "自定义单选框、复选框样式",
+      demo_intro: "根据设计图自定义单选框、复选框样式，宽高度，背景图，浮动值等",
+      demo_href: "css/radio-checkout-custom-style/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "CSS-ICON",
+      demo_intro: "纯css制作的icon，通过border、transform、position实现",
+      demo_href: "css/css-icons/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "Shadow-font",
+      demo_intro: "用css的shadow属性实现艺术字体，字体边框内填充",
+      demo_href: "css/shadow-font/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "3d外景罐头盒子",
+      demo_intro: "用css的transform以及模型切片的方式拼装实现",
+      demo_href: "css/3d-external-can/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "3d内景宇宙",
+      demo_intro: "用css的transform搭建3d模型，通过控制视点距离和rotate来实现",
+      demo_href: "css/3d-interior-universe/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "旋转木马相册",
+      demo_intro: "通过设置图片的transform和css动画实现",
+      demo_href: "css/round-horse-album/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "省市区地址联动选择器",
+      demo_intro: "静态地址数据，通过自定义样式选择地址",
+      demo_href: "js/address-linkage-selector/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "扩展数组arrayHas",
+      demo_intro: "判断某个值是否在数组里",
+      demo_href: "js/array-has/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "扩展时间Date格式化format",
+      demo_intro: "将时间戳转化成指定格式",
+      demo_href: "js/date-format/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "资源预加载进度",
+      demo_intro: "指定加载资源列表，图片，音频，获取加载进度",
+      demo_href: "js/file-preload/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "最强诗人小游戏",
+      demo_intro: "通过数据类型渲染不同场景，根据交互完成动画",
+      demo_href: "js/strongest-poet/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "通用定时器",
+      demo_intro: "多个计时器共用一个定时器，防止资源消耗，传入handler",
+      demo_href: "js/timer/index.html"
+    }, {
+      demo_type: "js",
+      demo_name: "动画对象使用通用定时器",
+      demo_intro: "多个计时器共用一个定时器，总定时器和每个对象的运动都可以单独控制",
+      demo_href: "js/timer1/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "圆环进度条",
+      demo_intro: "canvas实现圆环进度条，动画增加进度",
+      demo_href: "js/canvas/circle-progress/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "3d球体",
+      demo_intro: "通过球体算法用点阵绘制3d球体",
+      demo_href: "js/canvas/3d-custom-ball/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "3d笛卡尔坐标系",
+      demo_intro: "通过绘制xyz轴实现3d坐标系，在不同的视点下的显示效果",
+      demo_href: "js/canvas/3d-decare-coordinate/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "自定义画板",
+      demo_intro: "画板，可以定制图形，橡皮擦等等，也可以做图形绘制判定",
+      demo_href: "js/canvas/custom-sketchpad/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "烟花特效",
+      demo_intro: "非粒子效果，通过绘制路径擦除实现效果",
+      demo_href: "js/canvas/fireworks/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "动态飘花特效",
+      demo_intro: "通过工厂模式，动态生成，模拟重力风力阻力等效果",
+      demo_href: "js/canvas/floral-flower/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "图片裁剪器",
+      demo_intro: "通过canvas实现图片裁剪，预览，可以自定义裁剪形状",
+      demo_href: "js/canvas/pic-clipper/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "滑动拼图游戏",
+      demo_intro: "用createjs实现，滑动滑块，完成交互和结算判定",
+      demo_href: "js/canvas/sliding-puzzle/index.html"
+    }, {
+      demo_type: "canvas",
+      demo_name: "无限场景动画",
+      demo_intro: "通过图片叠加绘制，完成无限制的图片缩放场景变化",
+      demo_href: "js/canvas/unlimit-pic-animation/index.html"
+    }, {
+      demo_type: "css",
+      demo_name: "多彩渐变动画文字",
+      demo_intro: "通过css的渐变背景、动画、镂空文字，实现文字的多彩渐变",
+      demo_href: "css/colorful-font/index.html"
+    }];
+    Shuffle(list);
+    for (var i = 0, a = list.length; i < a; i++) {
+      var html = "<a href='" + list[i].demo_href + "' class='demo_href' target='_blank'><div class='demo_item " + list[i].demo_type + "'>" +
+        "<div class='demo_type'>" + list[i].demo_type + "</div>" +
+        "<div class='demo_name'>" + list[i].demo_name + "</div>" +
+        "<div class='demo_intro'>" + list[i].demo_intro + "</div>" +
+        "</div></a>";
+      $(".demo_container").append(html);
+    }
+  </script>
+</body>
+
+</html>

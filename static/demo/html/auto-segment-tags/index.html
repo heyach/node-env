@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body{margin: 0;padding: 0;}
+			.c_tags{margin-top: 30px;margin-left: 30px;position: relative;border: 1px #0000C0 solid;height: 34px;line-height: 34px;width: 600px;}
+			#c_tag{position: absolute;top: 0;left: 0;box-sizing: border-box;height: 34px;line-height: 34px;width: 600px;outline: none;border: 0;padding-left: 10px;}
+			.c_tags .tags_con{position: relative;padding-left: 10px;float: left;height: 34px;line-height: 34px;z-index: 999;}
+			.c_tags .tagi{position: relative;padding: 0 20px 0 8px;background: #ddd;color: #0000C0;top: 4px;float: left;height: 24px;line-height: 24px;
+				margin-right: 6px;border-radius: 3px;font-size: 12px;}	
+			.c_tags .tagi .btn_delete_tag{position: absolute;width: 12px;height: 12px;line-height: 12px;top: 6px;right: 3px;cursor: pointer;z-index: 999;text-align: center;
+	font-size: 16px;}
+		</style>
+	</head>
+	<body>
+		<div class="c_tags">
+			<div class="tags_con"></div>
+            <input type="text" id="c_tag" maxlength="50" placeholder="多个标签使用逗号，分号或顿号间隔"/>
+		</div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script>
+			$(function(){
+				$("#c_tag").on("keyup",function(e){
+					var key = e.keyCode;
+					var _this = $("#c_tag");
+					//处理firefox浏览器分号keycode=59的问题
+					if(key == 188 || key == 186 || key == 13 || key == 191 || (navigator.userAgent.indexOf("Firefox") > 0 && key == 59)){
+						//处理空内容，直接输入分割符号
+						var cnt = _this.val();
+						cnt = cnt.substr(0,cnt.length - 1);
+						if(cnt == "" || cnt == undefined){
+							_this.val("");
+							return;
+						}
+						_this.val("");
+						$(".tags_con").append("<div class='tagi'>" + cnt + "<div class='btn_delete_tag'>×</div></div>");
+						var w = $(".tags_con").width();
+						_this.css("border-left", w + "px solid transparent");
+					}
+				});
+				$(".tags_con").on("click",".btn_delete_tag",function(){
+					var _that = $(this);
+					var _this = $("#c_tag");
+					$(_that.parent()).remove();
+					var w = $(".tags_con").width();
+					_this.css("border-left", w + "px solid transparent");
+				});
+			});
+		</script>
+	</body>
+</html>

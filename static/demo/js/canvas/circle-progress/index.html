@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum=1.0,minimum=1.0,user-scalable=0" />
+<title>圆环百分比进度</title>
+<style type="text/css">
+body {
+	padding: 0;
+	margin: 0;
+	background: #fff;
+	font-family: Courier;
+	overflow: hidden;
+}
+canvas {
+	background-color: #000;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+<canvas id='canvas'></canvas>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 600;
+canvas.height = 600;
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+var rangeCell = Math.PI * 2 / 100;
+var speed = 0.1;
+
+function bgCircle(){
+	ctx.save();
+	ctx.strokeStyle = "#fff";
+	ctx.lineWidth = 2;
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, 100, 100, 0, Math.PI * 2, false);
+	ctx.stroke();
+	ctx.closePath();
+	ctx.restore();
+}
+function progressCircle(n){
+	ctx.save();
+	ctx.strokeStyle = "#fff";
+	ctx.lineWidth = 5;
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, 100, -Math.PI / 2, -Math.PI / 2 + n * rangeCell, false);
+	ctx.stroke();
+	ctx.restore();
+}
+function progressText(n){
+	ctx.save();
+	ctx.strokeStyle = "#fff";
+	ctx.font = "30px Arial";
+	ctx.strokeText(n.toFixed(0) + "%", centerX - 25, centerY + 10);
+	ctx.stroke();
+	ctx.restore();
+} 
+function drawFrame(){
+	window.requestAnimationFrame(drawFrame);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	bgCircle();
+	progressText(speed);
+	progressCircle(speed);
+	if(speed > 100){
+		var et = new Date().getTime();
+		var t = speed / 0.1;
+		var c = (et - st) / t;
+		console.log(c);
+		speed = 0;
+	}
+	speed += 0.1;
+};
+var animation = window.requestAnimationFrame(drawFrame);
+var st = new Date().getTime()
+//requestAnimationFrame的fps大概是16.7ms
+</script>
+</body>
+</html>

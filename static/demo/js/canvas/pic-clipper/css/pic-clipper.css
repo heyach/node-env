@@ -1,0 +1,28 @@
+body{margin: 0;padding: 0;}
+#pic_clipper{position: absolute;width: 600px;height: 600px;border: 1px #00CCA8 solid;top: 50%;left: 50%;margin: -300px -300px;font-size: 14px;}
+#pic_clipper .btn_add_image{position: relative;width: 50px;height: 50px;cursor: pointer;margin-top: 5px;margin-left: 5px;background: url(../img/i_add.png) 0 0 no-repeat;
+	background-size: 100% 100%;}
+	
+#pic_clipper .upload_result{position: relative;margin-top: 10px;width: 100%;display: none;}
+#pic_clipper .upload_result .upload_img{position: relative;width: 100%;border: 1px #00cca8 solid;display: none;margin-top: 10px;}
+#pic_clipper .upload_result .upload_img img{position: relative;width: 100px;height: auto;margin-right: 10px;border: 1px #FFFF00 solid;}
+
+#pic_clipper .upload_result .set_cut{position: relative;width: 100%;height: 30px;margin-top: 10px;margin-bottom: 10px;}
+#pic_clipper .upload_result .set_cut .cut_w,
+#pic_clipper .upload_result .set_cut .cut_h{position: relative;float: left;width: 50px;height: 22px;margin-top: 2px;border: 1px #00cca8 solid;
+	line-height: 22px;text-align: center;margin-right: 2px;}
+#pic_clipper .upload_result .set_cut span{position: relative;float: left;height: 25px;margin-top: 2px;margin-left: 10px;
+	line-height: 25px;text-align: left;}
+#pic_clipper .upload_result .set_cut .btn_set_cut{position: relative;width: 50px;height: 22px;margin-top: 2px;border: 1px #00cca8 solid;
+	line-height: 22px;text-align: center;border-radius: 4px;float: left;margin-left: 10px;cursor: pointer;}
+	
+#pic_clipper .upload_result .cut_canvas{position: relative;width: 400px;height: 400px;border: 1px #00cca8 solid;}
+#pic_clipper .cut_canvas canvas{position: relative;background: #f1f1f1;}
+#pic_clipper .cut_canvas .cut_shade{position: absolute;width: 100%;height: 100%;z-index: 10;top: 0;left: 0;}
+#pic_clipper .cut_shade .cut_l,
+#pic_clipper .cut_shade .cut_r,
+#pic_clipper .cut_shade .cut_t,
+#pic_clipper .cut_shade .cut_b{position: absolute;background: #000000;opacity: 0.6;}
+#pic_clipper .cut_shade .cut_rect{position: absolute;width: 200px;height: 120px;border: 1px yellow solid;cursor: url(../img/move.png),move;}
+#pic_clipper .upload_result .btn_cut{position: relative;width: 80px;height: 30px;line-height: 30px;text-align: center;color: #00cca8;border: 1px #00cca8 solid;
+	border-radius: 4px;background: #fff;margin-top: 10px;cursor: pointer;}

@@ -1,0 +1,15 @@
+/*loading*/
+/*sprite_loading*/
+.bilibili_loading{position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 9999;background: #ffffff;}
+.bilibili_loading .i_bilibili{position: relative;width: 80px;height: 80px;background: url(../img/sprite_bilibili.png) 0 0 no-repeat;
+	left: 50%;margin-left: -40px;top: 50%;margin-top: -80px;z-index: 10;}
+.bilibili_loading .loading_progress{position: relative;top: 50%;left: 50%;transform: translateX(-50%);float: left;}
+.act_bilibili_loading{animation: act_bilibili_loading 0.5s steps(1) infinite;}
+
+/*puzzle*/
+.puzzle{position: absolute;width: 100%;height: 100%;box-sizing: border-box;z-index: 10;cursor: url(../img/hand.cur),move;
+	border-top: 0px solid transparent;}
+
+@media screen and (min-width: 510px) {
+	._P{width: 320px !important;height: 568px !important;left: 50% !important;top: 50% !important;margin-left: -160px;margin-top: -284px;}
+}

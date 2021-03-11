@@ -1,0 +1,8 @@
+
+/*coordinate*/
+#stage{position: absolute;width: 100%;height: 100%;box-sizing: border-box;z-index: 10;cursor: url(../img/hand.cur),move;
+	border-top: 0px solid transparent;}
+	
+@media screen and (min-width: 510px) {
+	._P{width: 320px !important;height: 568px !important;left: 50% !important;top: 50% !important;margin-left: -160px;margin-top: -284px;}
+}

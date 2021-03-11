@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>滑动拼图游戏</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/animation.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/delay.css">
+  </head>
+<body>
+	<div id="container" class="_P">
+		<div class="bilibili_loading">
+			<div class="i_bilibili act_bilibili_loading"></div>
+			<div class="loading_progress">正在加载中</div>
+		</div>
+		<div class="puzzle">
+			<canvas id="puzzle_frame"></canvas>
+		</div>
+	</div>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/easeljs-0.8.2.min.js"></script>
+	<script src="js/preloadjs-0.6.2.min.js"></script>
+	<script src="js/soundjs-0.6.2.min.js"></script>
+	<script src="js/tweenjs-0.6.2.min.js"></script>
+	<script src="js/init-create.js"></script>
+	<script src="js/puzzle.js"></script>
+	
+</body>
+<script>
+$(function(){
+	var imgPath = "img/";
+	var manifest = [
+			{id: "puzzle_lv3_1",src: imgPath+"puzzle_lv3_01.jpg"},
+		    {id: "puzzle_lv3_2",src: imgPath+"puzzle_lv3_02.jpg"},
+		    {id: "puzzle_lv3_3",src: imgPath+"puzzle_lv3_03.jpg"},
+		    {id: "puzzle_lv3_4",src: imgPath+"puzzle_lv3_04.jpg"},
+		    {id: "puzzle_lv3_5",src: imgPath+"puzzle_lv3_05.jpg"},
+		    {id: "puzzle_lv3_6",src: imgPath+"puzzle_lv3_06.jpg"},
+		    {id: "puzzle_lv3_7",src: imgPath+"puzzle_lv3_07.jpg"},
+		    {id: "puzzle_lv3_8",src: imgPath+"puzzle_lv3_08.jpg"},
+		    {id: "puzzle_lv3_9",src: imgPath+"puzzle_lv3_09.jpg"},
+		    {id: "puzzle_lv4_1",src: imgPath+"puzzle_lv4_01.jpg"},
+		    {id: "puzzle_lv4_2",src: imgPath+"puzzle_lv4_02.jpg"},
+		    {id: "puzzle_lv4_3",src: imgPath+"puzzle_lv4_03.jpg"},
+		    {id: "puzzle_lv4_4",src: imgPath+"puzzle_lv4_04.jpg"},
+		    {id: "puzzle_lv4_5",src: imgPath+"puzzle_lv4_05.jpg"},
+		    {id: "puzzle_lv4_6",src: imgPath+"puzzle_lv4_06.jpg"},
+		    {id: "puzzle_lv4_7",src: imgPath+"puzzle_lv4_07.jpg"},
+		    {id: "puzzle_lv4_8",src: imgPath+"puzzle_lv4_08.jpg"},
+		    {id: "puzzle_lv4_9",src: imgPath+"puzzle_lv4_09.jpg"},
+		    {id: "puzzle_lv4_10",src: imgPath+"puzzle_lv4_10.jpg"},
+		    {id: "puzzle_lv4_11",src: imgPath+"puzzle_lv4_11.jpg"},
+		    {id: "puzzle_lv4_12",src: imgPath+"puzzle_lv4_12.jpg"},
+		    {id: "puzzle_lv4_13",src: imgPath+"puzzle_lv4_13.jpg"},
+		    {id: "puzzle_lv4_14",src: imgPath+"puzzle_lv4_14.jpg"},
+		    {id: "puzzle_lv4_15",src: imgPath+"puzzle_lv4_15.jpg"},
+		    {id: "puzzle_lv4_16",src: imgPath+"puzzle_lv4_16.jpg"},
+		    {id: "bg_puzzle",src: imgPath+"bg_puzzle.jpg"},
+		    {id: "puzzle_header",src: imgPath+"puzzle_header.png"},
+		    {id: "puzzle_footer",src: imgPath+"puzzle_footer.png"},
+		    {id: "preview_lv3",src: imgPath+"puzzle_lv3.jpg"},
+		    {id: "preview_lv4",src: imgPath+"puzzle_lv4.jpg"},
+		    {id: "bg_lv3",src: imgPath+"bg_puzzle_lv3.jpg"},
+		    {id: "bg_lv4",src: imgPath+"bg_puzzle_lv4.jpg"},
+		    {id: "puzzle_tmp_lv3",src: imgPath+"puzzle_tmp_lv3.jpg"},
+		    {id: "puzzle_tmp_lv4",src: imgPath+"puzzle_tmp_lv4.jpg"}
+	];
+	startPreload(manifest,null,function(){
+		$(".bilibili_loading").fadeOut();
+		InitStage('puzzle_frame',function(){
+			var s = new Puzzle();
+			s.init();
+			s.initLv3();
+		});
+	});
+});
+</script>
+</html>
