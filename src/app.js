@@ -1,9 +1,10 @@
-const express = require("express")
-const logger = require("./middleware/log")
-const notFound = require("./middleware/notFound")
-const error = require("./middleware/error")
-const allowAccess = require("./middleware/allowAccess")
-const bodyParser = require("body-parser")
+const express = require("express");
+const logger = require("./middleware/log");
+const notFound = require("./middleware/notFound");
+const error = require("./middleware/error");
+const allowAccess = require("./middleware/allowAccess");
+const bodyParser = require("body-parser");
+const path = require("path");
 
 const {
   uploadRouter,
@@ -11,16 +12,15 @@ const {
   articleClassifyRouter,
   articleRouter,
   loginRouter,
-  articleCommentRouter
-} = require("./api/index")
+  articleCommentRouter,
+} = require("./api/index");
 
-const app = express()
+const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(logger);
-app.use(allowAccess)
 
 app.use("/upload", uploadRouter);
 app.use("/user", userRouter);
@@ -30,13 +30,16 @@ app.use("/article", articleRouter);
 app.use("/login", loginRouter);
 
 // 第一个参数的路径为package.json的相对路径
+// 必须设置访问头之前，否则直接显示源码了
 app.use(express.static("static", {
   extensions: ["html", "htm", "png", "jpeg"]
 }))
 
-app.use(notFound)
-app.use(error)
+app.use(allowAccess);
+
+app.use(notFound);
+app.use(error);
 
 app.listen(5000, "127.0.0.1", () => {
-  console.log("server start at 127.0.0.1:5000")
-})
+  console.log("server start at 127.0.0.1:5000");
+});
