@@ -3,6 +3,31 @@ const models = require("../../db/models")
 
 const articleRouter = express.Router()
 
+articleRouter.get("/demo1", async (req, res) => {
+  setTimeout(() => {
+    res.json({
+      code: 0,
+      data: 1,
+    })
+  }, 1000)
+})
+articleRouter.get("/demo3", async (req, res) => {
+  setTimeout(() => {
+    res.json({
+      code: 0,
+      data: 3,
+    })
+  }, 3000)
+})
+articleRouter.get("/demo5", async (req, res) => {
+  setTimeout(() => {
+    res.json({
+      code: 0,
+      data: 5,
+    })
+  }, 5000)
+})
+
 // 查询列表分页
 articleRouter.get("/list", async (req, res) => {
   let limit = parseInt(req.query.limit),
