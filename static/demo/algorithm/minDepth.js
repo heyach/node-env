@@ -1,4 +1,0 @@
-
-var minDepth = function (root) {
-
-};
